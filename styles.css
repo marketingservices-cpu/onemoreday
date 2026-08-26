@@ -1,0 +1,515 @@
+/* ============================================================
+   One More Day
+   Single-theme site — a committed light "dawn" palette.
+   ============================================================ */
+
+:root {
+  /* Palette */
+  --paper:        #FBF8F2;  /* Dawn Paper — page ground        */
+  --ink:          #243049;  /* Dusk Ink — text                 */
+  --muted:        #63708A;  /* Muted text                      */
+  --sky:          #4E8FBD;  /* Cloud Sky — primary accent      */
+  --sky-tint:     #DCEAF4;  /* Soft sky tint                   */
+  --sky-deep:     #2F6E99;  /* Sky, darkened for text/focus    */
+  --amber:        #C4832F;  /* Sunset Amber — warmth, glow     */
+  --amber-deep:   #A3671C;  /* Amber, darkened — CTA hover     */
+  --on-amber:     #1D2739;  /* Text on amber (5:1 contrast)    */
+  --cardinal:     #B04A3E;  /* Cardinal — the buy button ONLY  */
+
+  --line:         #E7E0D3;  /* Hairline on paper               */
+  --line-sky:     #C4DAEA;  /* Hairline on sky tint            */
+  --field:        #FFFFFF;
+
+  /* Type */
+  --serif: "Cormorant Garamond", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+  --sans:  "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  /* Rhythm */
+  --gutter: 1.5rem;
+  --measure: 65ch;
+  --radius: 18px;
+}
+
+/* ---------- Reset-ish ---------- */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: auto;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 1.0625rem;      /* 17px */
+  line-height: 1.65;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (min-width: 48em) {
+  body { font-size: 1.125rem; }  /* 18px */
+}
+
+img, svg { max-width: 100%; }
+
+h1, h2 {
+  font-family: var(--serif);
+  font-weight: 600;
+  line-height: 1.12;
+  margin: 0;
+  text-wrap: balance;
+  letter-spacing: -0.005em;
+}
+
+p { margin: 0 0 1.1em; text-wrap: pretty; }
+p:last-child { margin-bottom: 0; }
+
+ul { margin: 0; padding: 0; list-style: none; }
+blockquote { margin: 0; }
+
+[hidden] { display: none !important; }
+
+/* ---------- Utilities ---------- */
+
+.wrap {
+  width: min(100% - (var(--gutter) * 2), 64rem);
+  margin-inline: auto;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--sky-deep);
+  margin: 0 0 1.25rem;
+}
+
+/* Every interactive thing shows focus, clearly. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid var(--sky-deep);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  min-height: 40rem;
+  min-height: 88svh;
+  padding-block: clamp(3.5rem, 12vw, 6rem);
+  text-align: center;
+}
+
+.hero__sky {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(125% 58% at 50% 84%, rgba(196, 131, 47, 0.20) 0%, rgba(196, 131, 47, 0) 62%),
+    linear-gradient(
+      180deg,
+      #C3DCEF   0%,
+      #DCEAF4  24%,
+      #EDF1EC  52%,
+      #FAF2E3  76%,
+      var(--paper) 100%
+    );
+}
+
+.hero__inner { position: relative; }
+
+.hero__mark {
+  display: block;
+  width: clamp(60px, 15vw, 78px);
+  height: auto;
+  margin: 0 auto 1.75rem;
+  filter: drop-shadow(0 6px 18px rgba(36, 48, 73, 0.16));
+}
+
+.hero__eyebrow { color: var(--sky-deep); }
+
+.hero__title {
+  font-size: clamp(3.25rem, 15vw, 6rem);
+  font-weight: 600;
+  margin: 0 0 1rem;
+  letter-spacing: -0.015em;
+}
+
+.hero__sub {
+  font-family: var(--sans);
+  font-size: clamp(1.0625rem, 3.6vw, 1.3125rem);
+  line-height: 1.55;
+  color: var(--muted);
+  max-width: 34ch;
+  margin: 0 auto 2.25rem;
+}
+
+.hero__cta { margin-bottom: 1.5rem; }
+
+.hero__note {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--muted);
+  max-width: 44ch;
+  margin: 0 auto;
+}
+
+/* ---------- Sections ---------- */
+
+.section {
+  padding-block: clamp(3.5rem, 10vw, 6.5rem);
+}
+
+.section--tint {
+  background: var(--sky-tint);
+}
+
+.section__heading {
+  font-size: clamp(1.75rem, 5.5vw, 2.625rem);
+  max-width: 22ch;
+  margin: 0 0 1.75rem;
+}
+
+.section__heading--center {
+  margin-inline: auto;
+  text-align: center;
+  max-width: 24ch;
+}
+
+.prose {
+  max-width: var(--measure);
+  font-size: 1.0625rem;
+}
+
+@media (min-width: 48em) {
+  .prose { font-size: 1.1875rem; }
+}
+
+.attribution {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.0625rem;
+  color: var(--muted);
+  margin-top: 1.75rem;
+}
+
+/* ---------- Quote cards ---------- */
+
+.quotes {
+  display: grid;
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+
+@media (min-width: 46em) {
+  .quotes {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+}
+
+.quote {
+  background: #FFFFFF;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: clamp(1.5rem, 5vw, 2.25rem);
+  box-shadow: 0 1px 2px rgba(36, 48, 73, 0.04), 0 10px 28px -22px rgba(36, 48, 73, 0.35);
+  display: flex;
+  align-items: center;
+}
+
+.quote p {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(1.25rem, 4.2vw, 1.5rem);
+  line-height: 1.4;
+  letter-spacing: 0.005em;
+  margin: 0;
+  text-wrap: pretty;
+}
+
+/* ---------- Panel (form / retailer surface) ---------- */
+
+.panel {
+  max-width: 34rem;
+  margin: 2.25rem auto 0;
+  background: #FFFFFF;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: clamp(1.5rem, 5vw, 2.25rem);
+  box-shadow: 0 1px 2px rgba(36, 48, 73, 0.04), 0 14px 34px -26px rgba(36, 48, 73, 0.4);
+  text-align: center;
+}
+
+.panel__aside {
+  margin: 1.5rem 0 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+}
+
+/* ---------- Buttons ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  padding: 0.8125rem 1.625rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-family: var(--sans);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 180ms ease, border-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+}
+
+.btn--primary {
+  background: var(--amber);
+  color: var(--on-amber);
+  box-shadow: 0 6px 18px -10px rgba(163, 103, 28, 0.85);
+}
+
+.btn--primary:hover {
+  background: var(--amber-deep);
+  color: #FFFFFF;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px -10px rgba(138, 86, 22, 0.8);
+}
+
+.btn--primary:active { transform: translateY(0); }
+
+.btn--primary[disabled] {
+  background: var(--amber);
+  color: var(--on-amber);
+  opacity: 0.62;
+  cursor: default;
+  transform: none;
+  box-shadow: none;
+}
+
+.btn--quiet {
+  background: var(--sky-tint);
+  border-color: var(--line-sky);
+  color: var(--ink);
+}
+
+.btn--quiet:hover {
+  background: #CFE2F0;
+  border-color: #ADCCE3;
+  transform: translateY(-1px);
+}
+
+.btn--quiet:active { transform: translateY(0); }
+
+/* Cardinal appears here and nowhere else on the site. */
+.btn--buy {
+  background: var(--cardinal);
+  color: #FFFFFF;
+  box-shadow: 0 6px 18px -10px rgba(176, 74, 62, 0.85);
+}
+
+.btn--buy:hover {
+  background: #973E34;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px -10px rgba(151, 62, 52, 0.8);
+}
+
+.btn--buy:active { transform: translateY(0); }
+
+.retailers {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin: 0;
+}
+
+/* ---------- Signup form ---------- */
+
+.signup { margin: 0; }
+
+.signup__row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  max-width: 30rem;
+  margin-inline: auto;
+}
+
+@media (min-width: 34em) {
+  .signup__row {
+    flex-direction: row;
+    align-items: stretch;
+    background: var(--field);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 0.3125rem;
+    gap: 0.3125rem;
+    box-shadow: 0 1px 2px rgba(36, 48, 73, 0.05), 0 14px 30px -24px rgba(36, 48, 73, 0.55);
+  }
+}
+
+.signup__input {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 3rem;
+  padding: 0.8125rem 1.25rem;
+  background: var(--field);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 1.0625rem;
+  line-height: 1.2;
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.signup__input::placeholder { color: var(--muted); opacity: 1; }
+
+.signup__input:hover { border-color: var(--line-sky); }
+
+@media (min-width: 34em) {
+  .signup__input {
+    border-color: transparent;
+    box-shadow: none;
+  }
+  .signup__input:hover { border-color: transparent; }
+  .signup__button { flex: 0 0 auto; }
+}
+
+.signup__button { white-space: nowrap; }
+
+/* Honeypot: reachable to a script, invisible and unfocusable to a person. */
+.signup__decoy {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.signup__error {
+  margin: 0.875rem 0 0;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+/* Stays in the DOM so assistive tech announces it; takes up nothing when empty. */
+.signup__error:empty { margin: 0; }
+
+.signup__done {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(1.25rem, 4.2vw, 1.5rem);
+  line-height: 1.4;
+  color: var(--ink);
+  max-width: 26ch;
+  margin: 0 auto;
+  padding-block: 0.5rem;
+}
+
+/* ---------- Footer ---------- */
+
+.footer {
+  border-top: 1px solid var(--line);
+  padding-block: 2.5rem 3rem;
+}
+
+.footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+}
+
+.footer__line {
+  margin: 0;
+  font-size: 0.9375rem;
+  color: var(--muted);
+}
+
+.footer__link {
+  color: var(--sky-deep);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(47, 110, 153, 0.35);
+  padding-bottom: 1px;
+  transition: color 180ms ease, border-color 180ms ease;
+}
+
+.footer__link:hover {
+  color: var(--ink);
+  border-bottom-color: var(--ink);
+}
+
+/* ============================================================
+   Motion — one orchestrated page-load moment, ~1.2s.
+   Nothing else animates but hovers.
+   ============================================================ */
+
+@media (prefers-reduced-motion: no-preference) {
+
+  html { scroll-behavior: smooth; }
+
+  @keyframes omdSkyRise {
+    from { opacity: 0.55; filter: brightness(0.94) saturate(0.78); }
+    to   { opacity: 1;    filter: none; }
+  }
+
+  @keyframes omdSettle {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  .hero__sky {
+    animation: omdSkyRise 1200ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  }
+
+  .hero__mark,
+  .hero__eyebrow,
+  .hero__title,
+  .hero__sub,
+  .hero__cta,
+  .hero__note {
+    animation: omdSettle 640ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  }
+
+  .hero__mark    { animation-delay:  60ms; }
+  .hero__eyebrow { animation-delay: 160ms; }
+  .hero__title   { animation-delay: 260ms; }
+  .hero__sub     { animation-delay: 380ms; }
+  .hero__cta     { animation-delay: 480ms; }
+  .hero__note    { animation-delay: 560ms; }
+}

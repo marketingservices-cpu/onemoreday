@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>One More Day — a novel about love, loss, and hope</title>
+<meta name="description" content="A story about life, love, and loss — and finding yourself again when you never thought you could. Join 219,000 readers waiting for One More Day." />
+<meta name="theme-color" content="#DCEAF4" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="One More Day — a novel about love, loss, and hope" />
+<meta property="og:description" content="A story about life, love, and loss — and finding yourself again when you never thought you could. Join 219,000 readers waiting for One More Day." />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="One More Day — a novel about love, loss, and hope" />
+<meta name="twitter:description" content="A story about life, love, and loss — and finding yourself again when you never thought you could. Join 219,000 readers waiting for One More Day." />
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Ccircle%20cx='32'%20cy='32'%20r='32'%20fill='%234E8FBD'/%3E%3Cg%20fill='%23ffffff'%3E%3Cpath%20d='M32,52C20.5,43.5,11,35.5,11,26.5C11,19.5,16.5,14.5,23,14.5C27.5,14.5,30.8,17.2,32,20C33.2,17.2,36.5,14.5,41,14.5C47.5,14.5,53,19.5,53,26.5C53,35.5,43.5,43.5,32,52Z'/%3E%3Ccircle%20cx='21.5'%20cy='21'%20r='8.6'/%3E%3Ccircle%20cx='42.5'%20cy='21'%20r='8.6'/%3E%3Ccircle%20cx='13.8'%20cy='28.5'%20r='6'/%3E%3Ccircle%20cx='50.2'%20cy='28.5'%20r='6'/%3E%3Ccircle%20cx='24'%20cy='33'%20r='7.4'/%3E%3Ccircle%20cx='40'%20cy='33'%20r='7.4'/%3E%3C/g%3E%3C/svg%3E" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&amp;family=Source+Sans+3:ital,wght@0,400;0,600;1,400&amp;display=swap" />
+<link rel="stylesheet" href="styles.css" />
+<script src="config.js"></script>
+</head>
+<body>
+
+<!-- ===================== HERO ===================== -->
+<header class="hero" id="top">
+  <div class="hero__sky" aria-hidden="true"></div>
+  <div class="wrap hero__inner">
+
+    <svg class="mark hero__mark" viewBox="0 0 64 64" width="72" height="72" role="img" aria-label="One More Day">
+      <defs>
+        <radialGradient id="omdSky" cx="50%" cy="32%" r="80%">
+          <stop offset="0%" stop-color="#9BCBE7" />
+          <stop offset="100%" stop-color="#4E8FBD" />
+        </radialGradient>
+        <linearGradient id="omdCloud" gradientUnits="userSpaceOnUse" x1="32" y1="10" x2="32" y2="53">
+          <stop offset="0%" stop-color="#FFFFFF" />
+          <stop offset="58%" stop-color="#FCFBF8" />
+          <stop offset="100%" stop-color="#DCE7F1" />
+        </linearGradient>
+      </defs>
+      <circle cx="32" cy="32" r="32" fill="url(#omdSky)" />
+      <g fill="url(#omdCloud)">
+        <path d="M32,52C20.5,43.5,11,35.5,11,26.5C11,19.5,16.5,14.5,23,14.5C27.5,14.5,30.8,17.2,32,20C33.2,17.2,36.5,14.5,41,14.5C47.5,14.5,53,19.5,53,26.5C53,35.5,43.5,43.5,32,52Z" />
+        <circle cx="21.5" cy="21" r="8.6" />
+        <circle cx="42.5" cy="21" r="8.6" />
+        <circle cx="13.8" cy="28.5" r="6" />
+        <circle cx="50.2" cy="28.5" r="6" />
+        <circle cx="24" cy="33" r="7.4" />
+        <circle cx="40" cy="33" r="7.4" />
+      </g>
+    </svg>
+
+    <p class="eyebrow hero__eyebrow">A story years in the making</p>
+    <h1 class="hero__title">One More Day</h1>
+    <p class="hero__sub">A story about life, love, and loss — and finding yourself again when you never thought you could.</p>
+
+    <div class="hero__cta">
+      <!-- Phase 1: capture the email. -->
+      <form class="signup phase-1" data-signup data-source="hero">
+        <div class="signup__row">
+          <label class="sr-only" for="email-hero">Your email address</label>
+          <input class="signup__input" id="email-hero" name="email" type="email" placeholder="Your email address" autocomplete="email" inputmode="email" spellcheck="false" maxlength="254" required />
+          <button class="btn btn--primary signup__button" type="submit">Tell me when it&rsquo;s here</button>
+        </div>
+        <div class="signup__decoy" aria-hidden="true">
+          <label for="website-hero">Leave this field empty</label>
+          <input id="website-hero" name="website" type="text" tabindex="-1" autocomplete="off" />
+        </div>
+        <p class="signup__error" data-signup-error role="alert"></p>
+      </form>
+      <p class="signup__done phase-1" data-signup-done role="status" hidden>You&rsquo;re on the list. Thank you for being here.</p>
+
+      <!-- Phase 2: send them to the retailers. -->
+      <p class="phase-2" hidden><a class="btn btn--primary" href="#buy">Get your copy</a></p>
+    </div>
+
+    <p class="hero__note phase-1">Join the 219,000 people who follow One More Day. No noise — just the news that matters.</p>
+
+  </div>
+</header>
+
+<main>
+
+  <!-- ===================== THE STORY ===================== -->
+  <section class="section" id="story" aria-labelledby="story-heading">
+    <div class="wrap">
+      <h2 class="section__heading" id="story-heading">Written from the heart, for anyone who has loved and lost</h2>
+      <div class="prose">
+        <p>For years, I&rsquo;ve carried a story in my heart. One More Day is that story — about life, love, loss&hellip; and finding yourself again when you never thought you could.</p>
+        <p>Every page has been written from the heart. When it&rsquo;s finally in your hands, I hope it reminds you to cherish each moment — and never give up on hope.</p>
+        <p class="attribution">— from the announcement to readers, July 2026</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== THE WORDS ===================== -->
+  <section class="section" id="words" aria-labelledby="words-heading">
+    <div class="wrap">
+      <h2 class="section__heading section__heading--center" id="words-heading">Words that found 219,000 hearts</h2>
+      <ul class="quotes">
+        <li class="quote"><blockquote><p>Letting go of something precious may be as simple as saying: &lsquo;Thank you for the journey.&rsquo;</p></blockquote></li>
+        <li class="quote"><blockquote><p>Whenever grief tries to steal the beauty of your memories, just remember: Love. Never. Dies.</p></blockquote></li>
+        <li class="quote"><blockquote><p>I don&rsquo;t follow a timeline. Stop asking when I&rsquo;ll be done. — Grief</p></blockquote></li>
+        <li class="quote"><blockquote><p>May today bring you quiet strength, unexpected kindness, and little moments that make life feel worth it.</p></blockquote></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== THE AUTHOR ===================== -->
+  <section class="section section--tint" id="author" aria-labelledby="author-heading">
+    <div class="wrap">
+      <h2 class="section__heading" id="author-heading">The heart behind the page</h2>
+      <div class="prose">
+        <p>One More Day began as a place to put words to the things we all feel and rarely say. What started as a single page about love, loss, and healing has grown into a daily gathering of more than 219,000 people. The book carries that same heart — written by the same hands, for the same reasons.<span data-author-name hidden> One More Day is the debut novel of Chris Post.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== JOIN THE JOURNEY (Phase 1) ===================== -->
+  <section class="section phase-1" id="join" aria-labelledby="join-heading">
+    <div class="wrap">
+      <h2 class="section__heading section__heading--center" id="join-heading">Be part of the story</h2>
+      <div class="panel">
+        <form class="signup" data-signup data-source="footer">
+          <div class="signup__row">
+            <label class="sr-only" for="email-join">Your email address</label>
+            <input class="signup__input" id="email-join" name="email" type="email" placeholder="Your email address" autocomplete="email" inputmode="email" spellcheck="false" maxlength="254" required />
+            <button class="btn btn--primary signup__button" type="submit">Tell me when it&rsquo;s here</button>
+          </div>
+          <div class="signup__decoy" aria-hidden="true">
+            <label for="website-join">Leave this field empty</label>
+            <input id="website-join" name="website" type="text" tabindex="-1" autocomplete="off" />
+          </div>
+          <p class="signup__error" data-signup-error role="alert"></p>
+        </form>
+        <p class="signup__done" data-signup-done role="status" hidden>You&rsquo;re on the list. Thank you for being here.</p>
+        <p class="panel__aside"><a class="btn btn--quiet" data-facebook-link href="https://www.facebook.com/onemoredaypost" target="_blank" rel="noopener">Follow One More Day on Facebook</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== GET YOUR COPY (Phase 2) ===================== -->
+  <section class="section phase-2" id="buy" aria-labelledby="buy-heading" hidden>
+    <div class="wrap">
+      <h2 class="section__heading section__heading--center" id="buy-heading">Get your copy</h2>
+      <div class="panel">
+        <p class="retailers">
+          <a class="btn btn--buy" data-retailer="amazon" href="#" hidden>Amazon</a>
+          <a class="btn btn--quiet" data-retailer="more" href="#" hidden>More retailers</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer">
+  <div class="wrap footer__inner">
+    <p class="footer__line">One More Day &middot; &copy; 2026</p>
+    <p class="footer__line"><a class="footer__link" data-facebook-link href="https://www.facebook.com/onemoredaypost" target="_blank" rel="noopener">Facebook</a></p>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
