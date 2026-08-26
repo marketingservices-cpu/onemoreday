@@ -142,6 +142,24 @@ input:focus-visible {
 
 .hero__inner { position: relative; }
 
+/* The balloon — small, high, unhurried. The one touch of cardinal
+   in the sky; the story behind it belongs to the author. */
+.hero__balloon {
+  position: absolute;
+  top: clamp(3.5rem, 12vh, 7rem);
+  right: clamp(0.75rem, 9vw, 9rem);
+  z-index: 0;
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+.hero__balloon-art {
+  display: block;
+  width: clamp(30px, 4.5vw, 46px);
+  height: auto;
+  filter: drop-shadow(0 4px 10px rgba(36, 48, 73, 0.14));
+}
+
 .hero__mark {
   display: block;
   width: clamp(60px, 15vw, 78px);
@@ -408,6 +426,47 @@ input:focus-visible {
 
 .signup__button { white-space: nowrap; }
 
+/* Early-reader invitation — quiet, optional, sincere. */
+.signup__early {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-top: 0.875rem;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--muted);
+  text-align: left;
+  cursor: pointer;
+  max-width: 30rem;
+}
+
+.signup__early input {
+  flex: 0 0 auto;
+  width: 1.125rem;
+  height: 1.125rem;
+  margin: 0.2rem 0 0;
+  accent-color: var(--sky-deep);
+  cursor: pointer;
+}
+
+.signup__early:hover { color: var(--ink); }
+
+/* The chapter link inside the success message. */
+.signup__lead {
+  display: inline-block;
+  font-family: var(--sans);
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.0625rem;
+  color: var(--sky-deep);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(47, 110, 153, 0.35);
+  padding-bottom: 1px;
+  margin-top: 0.375rem;
+}
+
+.signup__lead:hover { color: var(--ink); border-bottom-color: var(--ink); }
+
 /* Honeypot: reachable to a script, invisible and unfocusable to a person. */
 .signup__decoy {
   position: absolute;
@@ -438,6 +497,20 @@ input:focus-visible {
   max-width: 26ch;
   margin: 0 auto;
   padding-block: 0.5rem;
+}
+
+/* ---------- Floating CTA ---------- */
+
+.float-cta {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: calc(1.125rem + env(safe-area-inset-bottom, 0px));
+  z-index: 10;
+}
+
+.float-cta__btn {
+  box-shadow: 0 6px 18px -8px rgba(163, 103, 28, 0.9), 0 2px 8px rgba(36, 48, 73, 0.18);
 }
 
 /* ---------- Footer ---------- */
@@ -512,4 +585,27 @@ input:focus-visible {
   .hero__sub     { animation-delay: 380ms; }
   .hero__cta     { animation-delay: 480ms; }
   .hero__note    { animation-delay: 560ms; }
+
+  /* The balloon rises into the morning, then drifts — barely. */
+  @keyframes omdBalloonRise {
+    from { opacity: 0; transform: translateY(26px); }
+    to   { opacity: 0.85; transform: none; }
+  }
+
+  @keyframes omdBalloonDrift {
+    from { transform: translate(0, 0); }
+    to   { transform: translate(-6px, -10px); }
+  }
+
+  .hero__balloon {
+    animation: omdBalloonRise 1800ms cubic-bezier(0.22, 0.61, 0.36, 1) 400ms both;
+  }
+
+  .hero__balloon-art {
+    animation: omdBalloonDrift 16s ease-in-out 2200ms infinite alternate;
+  }
+
+  .float-cta {
+    transition: opacity 240ms ease, visibility 240ms ease;
+  }
 }

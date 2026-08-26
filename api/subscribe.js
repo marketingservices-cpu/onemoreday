@@ -1,28 +1,31 @@
 /* POST /api/subscribe
  *
- * Body: { email: string, source: "hero" | "footer", website?: string }
+ * Body:  { email: string, source: "hero" | "footer", campaign?: string,
+ *          early_reader?: boolean, website?: string }
  * Reply: { ok: true } | { ok: false }
  *
  * Vercel Node serverless function. No npm dependencies — global fetch only.
  *
- * Environment variables:
- *   SUPABASE_URL               e.g. https://xxxxxxxx.supabase.co
- *   SUPABASE_SERVICE_ROLE_KEY  service role key (server-side only, never shipped to the browser)
+ * This is a thin proxy: the real work (validation, honeypot, dedup and
+ * rate limiting) happens in a dedicated signup endpoint that alone can
+ * reach the signups table. The key below is the endpoint's public access
+ * key — it grants no data access on its own; the table is unreachable
+ * except through the endpoint. Override either value with env vars
+ * SIGNUP_ENDPOINT / SIGNUP_KEY if the backend ever moves.
  *
- * Expected table:
- *   create table public.signups (
- *     id          bigint generated always as identity primary key,
- *     email       text not null,
- *     source      text,
- *     created_at  timestamptz not null default now()
- *   );
- *   create unique index signups_email_key on public.signups (lower(email));
- *
- * A duplicate email is treated as success, so a reader who signs up twice
- * still gets the kind message rather than an error.
+ * A duplicate email is treated as success upstream, so a reader who signs
+ * up twice still gets the kind message rather than an error.
  */
 
 "use strict";
+
+var SIGNUP_ENDPOINT =
+  process.env.SIGNUP_ENDPOINT ||
+  "https://czphffqwwvfpggxzeghy.supabase.co/functions/v1/omd-signup";
+
+var SIGNUP_KEY =
+  process.env.SIGNUP_KEY ||
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN6cGhmZnF3d3ZmcGdneHplZ2h5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMyMjM1MjAsImV4cCI6MjA5ODc5OTUyMH0.SeAbmY2BnW7w1kgaogBW_L36cUlTdUArGJPgWJ5Nd8g";
 
 var EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 var MAX_EMAIL_LENGTH = 254;
@@ -63,6 +66,21 @@ function isValidEmail(value) {
   );
 }
 
+/* Campaign tags arrive from the page URL (?src=...) — allow only a short,
+   harmless slug so the list never stores junk. */
+function cleanCampaign(value) {
+  if (typeof value !== "string") { return null; }
+  var slug = value.trim().toLowerCase().replace(/[^a-z0-9_-]/g, "").slice(0, 24);
+  return slug !== "" ? slug : null;
+}
+
+function clientIp(req) {
+  var forwarded = req.headers && req.headers["x-forwarded-for"];
+  if (typeof forwarded !== "string" || forwarded === "") { return null; }
+  var first = forwarded.split(",")[0].trim();
+  return first !== "" ? first : null;
+}
+
 module.exports = async function handler(req, res) {
   res.setHeader("Content-Type", "application/json; charset=utf-8");
   res.setHeader("Cache-Control", "no-store");
@@ -93,38 +111,31 @@ module.exports = async function handler(req, res) {
   }
 
   var source = payload.source === "footer" ? "footer" : "hero";
+  var campaign = cleanCampaign(payload.campaign);
 
-  var baseUrl = process.env.SUPABASE_URL;
-  var serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-
-  if (!baseUrl || !serviceKey) {
-    console.error("subscribe: SUPABASE_URL and/or SUPABASE_SERVICE_ROLE_KEY are not set");
-    res.status(500).json({ ok: false });
-    return;
-  }
-
-  var endpoint = baseUrl.replace(/\/+$/, "") + "/rest/v1/signups";
   var controller = new AbortController();
   var timer = setTimeout(function () {
     controller.abort();
   }, UPSTREAM_TIMEOUT_MS);
 
   try {
-    var upstream = await fetch(endpoint, {
+    var upstream = await fetch(SIGNUP_ENDPOINT, {
       method: "POST",
       headers: {
-        apikey: serviceKey,
-        Authorization: "Bearer " + serviceKey,
         "Content-Type": "application/json",
-        Prefer: "resolution=ignore-duplicates,return=minimal"
+        Authorization: "Bearer " + SIGNUP_KEY
       },
-      body: JSON.stringify({ email: email, source: source }),
+      body: JSON.stringify({
+        email: email,
+        source: source,
+        campaign: campaign,
+        early_reader: payload.early_reader === true,
+        client_ip: clientIp(req)
+      }),
       signal: controller.signal
     });
 
-    // 409 covers the case where the unique index rejects the row outright
-    // (i.e. when resolution=ignore-duplicates is not honoured).
-    if (upstream.ok || upstream.status === 409) {
+    if (upstream.ok) {
       res.status(200).json({ ok: true });
       return;
     }

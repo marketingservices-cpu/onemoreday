@@ -15,6 +15,12 @@ window.OMD_CONFIG = {
 
   SHOW_AUTHOR_NAME: false,
 
+  /* Paste a link to the free first chapter (a PDF or a page) to switch the
+     site into lead-magnet mode: the buttons become "Read the first chapter
+     free" and readers get the chapter link the moment they sign up.
+     Leave "" until the chapter exists. */
+  LEAD_MAGNET_URL: "",
+
   RETAILER_LINKS: {
     amazon: "#",
     more: "#"
