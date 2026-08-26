@@ -26,5 +26,10 @@ window.OMD_CONFIG = {
     more: "#"
   },
 
-  FACEBOOK_URL: "https://www.facebook.com/onemoredaypost"
+  FACEBOOK_URL: "https://www.facebook.com/onemoredaypost",
+
+  /* Where signups are sent. The key is the endpoint's public access key —
+     safe to ship in the page; it grants no data access on its own. */
+  SIGNUP_URL: "https://czphffqwwvfpggxzeghy.supabase.co/functions/v1/omd-signup",
+  SIGNUP_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN6cGhmZnF3d3ZmcGdneHplZ2h5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMyMjM1MjAsImV4cCI6MjA5ODc5OTUyMH0.SeAbmY2BnW7w1kgaogBW_L36cUlTdUArGJPgWJ5Nd8g"
 };

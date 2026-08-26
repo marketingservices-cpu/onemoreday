@@ -222,16 +222,19 @@
   })();
 
   /* Resolves true on success, false on anything else.
-     Never rejects, never throws — a static local preview with no /api
-     simply shows the error message. */
+     Never rejects, never throws — if the endpoint is unreachable the
+     reader simply sees the error message. */
   function send(payload) {
-    if (typeof window.fetch !== "function") {
+    if (typeof window.fetch !== "function" || !cfg.SIGNUP_URL || !cfg.SIGNUP_KEY) {
       return Promise.resolve(false);
     }
 
-    return window.fetch("/api/subscribe", {
+    return window.fetch(cfg.SIGNUP_URL, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + cfg.SIGNUP_KEY
+      },
       body: JSON.stringify(payload)
     }).then(function (response) {
       if (!response.ok) { return false; }

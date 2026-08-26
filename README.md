@@ -1,51 +1,34 @@
 # One More Day
 
 The single-page site for the novel *One More Day*. Plain HTML, CSS and JavaScript —
-no framework, no build step. Email signups are stored in a Supabase table via one
-Vercel serverless function.
+no framework, no build step, no server. The signup forms post straight to a dedicated
+signup endpoint (see below), so the site can be hosted anywhere static files can.
 
 ```
 index.html        the page
 styles.css        design system + layout
-main.js           phase switching, config wiring, form handling
+main.js           phase switching, config wiring, form handling, floating CTA
 config.js         everything you'll want to change (see below)
-api/subscribe.js  serverless function that stores a signup
+api/subscribe.js  optional serverless proxy — only needed on a host that runs
+                  functions; the site does NOT use it (forms post directly)
 ```
 
 ## Running it locally
 
-**Look at the page:** open `index.html` in a browser. Everything renders; the signup
-form will show *"Something went wrong — please try again."* because there is no
-`/api/subscribe` behind a plain file.
+Open `index.html` in a browser, or serve the folder with any static server.
+Everything works, including real signups — the forms talk to the live endpoint.
 
-**Test the signup too:** run the Vercel CLI from this folder (`vercel dev`) with the
-env vars below set. Nothing needs installing for the page itself.
+## Where signups go
 
-## Environment variables
+Signups land in the `onemoreday.signups` table (isolated schema, RLS on, no
+policies) behind the `omd-signup` edge function, which does validation, a
+honeypot check, per-IP rate limiting, and dedup. The key in `config.js` is the
+endpoint's public anon key: safe in the page, grants no table access on its own.
+A repeat signup is treated as success — and if it newly ticks the early-reader
+box, the existing row is upgraded rather than duplicated.
 
-Set these on the Vercel project (and locally in `.env` if you use `vercel dev`).
-Both are server-side only and are never sent to the browser.
-
-| Variable | What it is |
-| --- | --- |
-| `SUPABASE_URL` | Your project URL, e.g. `https://xxxxxxxx.supabase.co` |
-| `SUPABASE_SERVICE_ROLE_KEY` | The service role key |
-
-The table the function writes to:
-
-```sql
-create table public.signups (
-  id         bigint generated always as identity primary key,
-  email      text not null,
-  source     text,
-  created_at timestamptz not null default now()
-);
-
-create unique index signups_email_key on public.signups (lower(email));
-```
-
-A repeat signup is treated as success, so someone who signs up twice still sees the
-thank-you message rather than an error.
+Columns: `email`, `source` (hero/footer), `campaign` (from `?src=` on the page
+URL), `early_reader`, `created_at`.
 
 ## config.js
 
@@ -55,8 +38,10 @@ Everything that changes over the life of the site lives in `config.js`.
 | --- | --- | --- |
 | `PHASE` | `1` | `1` = collect emails. `2` = sell the book. |
 | `SHOW_AUTHOR_NAME` | `false` | `true` adds "One More Day is the debut novel of Chris Post." to the author section. |
+| `LEAD_MAGNET_URL` | `""` | Paste a link to the free first chapter to switch the buttons to "Read the first chapter free" and give signups the chapter link. |
 | `RETAILER_LINKS` | `{ amazon: "#", more: "#" }` | Where the Phase 2 buy buttons point. |
 | `FACEBOOK_URL` | the page URL | Used by both Facebook links. |
+| `SIGNUP_URL` / `SIGNUP_KEY` | the live endpoint | Where the forms send signups. |
 
 ## Flipping to Phase 2 on launch day
 
@@ -65,9 +50,14 @@ Everything that changes over the life of the site lives in `config.js`.
 3. Deploy.
 
 That's the whole flip. The hero button becomes **Get your copy** and scrolls to the
-retailers, "Be part of the story" is replaced by "Get your copy", and the email forms
-step aside.
+retailers, the email forms step aside, and the floating button starts selling too.
 
 A safety rail: if `PHASE` is `2` but every retailer link is still `"#"`, the site stays
 on Phase 1. It will never show a button that goes nowhere. Any single retailer link
 left as `"#"` is simply hidden.
+
+## Still to add before public launch
+
+- `og:image` — the preview picture Facebook shows when the link is shared.
+- The real domain.
+- Chris's sign-off on the balloon in the hero sky.
