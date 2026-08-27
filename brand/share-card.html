@@ -1,0 +1,56 @@
+<!DOCTYPE html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Source+Sans+3:wght@400;600&display=swap">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:100%;height:100%;overflow:hidden}
+  .card{width:100vw;height:100vh;position:relative;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;text-align:center;
+    background:radial-gradient(125% 55% at 50% 86%, rgba(196,131,47,.22) 0%, rgba(196,131,47,0) 62%),
+      linear-gradient(180deg,#BCD8EE 0%,#DCEAF4 22%,#EDF1EC 50%,#FAF2E3 76%,#FBF8F2 100%);}
+  .balloon{position:absolute;top:9vh;right:14vw;opacity:.9}
+  .balloon svg{width:7vmin;height:auto;filter:drop-shadow(0 1vmin 2vmin rgba(36,48,73,.16))}
+  .mark{width:15vmin;height:auto;filter:drop-shadow(0 1.2vmin 3vmin rgba(36,48,73,.18));margin-bottom:3.5vmin}
+  .kick{font-family:"Source Sans 3",sans-serif;font-size:2.4vmin;font-weight:600;
+        letter-spacing:.24em;text-transform:uppercase;color:#2F6E99;margin-bottom:2.5vmin}
+  h1{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;font-size:13vmin;
+     line-height:1.02;letter-spacing:-.015em;color:#243049}
+  .sub{font-family:"Source Sans 3",sans-serif;font-size:3.5vmin;line-height:1.5;color:#63708A;
+       max-width:20ch;margin:3vmin auto 0}
+  .foot{position:absolute;bottom:7vh;left:0;right:0}
+  .rule{width:14vmin;height:1px;background:#D9CFBC;margin:0 auto 3vmin}
+  .url{font-family:"Source Sans 3",sans-serif;font-size:3.4vmin;font-weight:600;color:#243049;letter-spacing:.01em}
+  .by{font-family:"Source Sans 3",sans-serif;font-size:2.6vmin;color:#63708A;margin-top:1.2vmin}
+</style></head><body>
+<div class="card">
+  <div class="balloon">
+    <svg viewBox="0 0 40 58">
+      <path d="M20 2 C31 2 38 10 38 20 C38 29.5 28.5 35.5 24.5 42 L15.5 42 C11.5 35.5 2 29.5 2 20 C2 10 9 2 20 2 Z" fill="#B04A3E"/>
+      <path d="M20 2 C25.5 2 29 10 29 20 C29 29 24.5 35.5 22.5 42 L17.5 42 C15.5 35.5 11 29 11 20 C11 10 14.5 2 20 2 Z" fill="#C05B4F"/>
+      <path d="M20 2 C22 2 23.5 10 23.5 20 C23.5 29.5 21.5 36 20.8 42 L19.2 42 C18.5 36 16.5 29.5 16.5 20 C16.5 10 18 2 20 2 Z" fill="#CF6F60"/>
+      <path d="M15.5 42 L15 49 M24.5 42 L25 49" stroke="#63708A" stroke-width=".9" fill="none"/>
+      <rect x="15" y="49" width="10" height="7" rx="2" fill="#8A5F38"/>
+    </svg>
+  </div>
+  <svg class="mark" viewBox="0 0 64 64">
+    <defs>
+      <radialGradient id="s" cx="50%" cy="32%" r="80%"><stop offset="0%" stop-color="#9BCBE7"/><stop offset="100%" stop-color="#4E8FBD"/></radialGradient>
+      <linearGradient id="c" gradientUnits="userSpaceOnUse" x1="32" y1="10" x2="32" y2="53"><stop offset="0%" stop-color="#fff"/><stop offset="58%" stop-color="#FCFBF8"/><stop offset="100%" stop-color="#DCE7F1"/></linearGradient>
+    </defs>
+    <circle cx="32" cy="32" r="32" fill="url(#s)"/>
+    <g fill="url(#c)">
+      <path d="M32,52C20.5,43.5,11,35.5,11,26.5C11,19.5,16.5,14.5,23,14.5C27.5,14.5,30.8,17.2,32,20C33.2,17.2,36.5,14.5,41,14.5C47.5,14.5,53,19.5,53,26.5C53,35.5,43.5,43.5,32,52Z"/>
+      <circle cx="21.5" cy="21" r="8.6"/><circle cx="42.5" cy="21" r="8.6"/>
+      <circle cx="13.8" cy="28.5" r="6"/><circle cx="50.2" cy="28.5" r="6"/>
+      <circle cx="24" cy="33" r="7.4"/><circle cx="40" cy="33" r="7.4"/>
+    </g>
+  </svg>
+  <div class="kick">A story years in the making</div>
+  <h1>One More Day</h1>
+  <p class="sub">A story about life, love, and loss — and finding yourself again when you never thought you could.</p>
+  <div class="foot">
+    <div class="rule"></div>
+    <div class="url">onemoredaybook.com</div>
+    <div class="by">A novel by Chris Post</div>
+  </div>
+</div>
+</body></html>
