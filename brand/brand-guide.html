@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<title>One More Day — Brand Guide</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap">
+<style>
+  @page { size: letter; margin: 0; }
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --paper:#FBF8F2; --ink:#243049; --muted:#63708A;
+    --sky:#4E8FBD; --sky-tint:#DCEAF4; --sky-deep:#2F6E99;
+    --amber:#C4832F; --cardinal:#B04A3E; --line:#E7E0D3;
+    --serif:"Cormorant Garamond",Georgia,serif;
+    --sans:"Source Sans 3",system-ui,sans-serif;
+  }
+  body{font-family:var(--sans);color:var(--ink);background:#fff;font-size:11pt;line-height:1.6}
+  .page{width:8.5in;height:11in;padding:0.9in 0.95in;position:relative;overflow:hidden;
+        page-break-after:always;background:var(--paper);display:flex;flex-direction:column}
+  .page:last-child{page-break-after:auto}
+
+  /* cover */
+  .cover{align-items:center;justify-content:center;text-align:center;padding:0;
+    background:radial-gradient(125% 58% at 50% 84%, rgba(196,131,47,.20) 0%, rgba(196,131,47,0) 62%),
+      linear-gradient(180deg,#C3DCEF 0%,#DCEAF4 24%,#EDF1EC 52%,#FAF2E3 76%,#FBF8F2 100%);}
+  .cover .balloon{position:absolute;top:1.5in;right:1.5in;opacity:.85}
+  .cover h1{font-family:var(--serif);font-weight:600;font-size:64pt;line-height:1.05;letter-spacing:-.015em;margin:18px 0 10px}
+  .cover .sub{font-size:13pt;color:var(--muted);max-width:24em;margin:0 auto}
+  .cover .kick{font-size:9pt;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--sky-deep)}
+  .cover .foot{position:absolute;bottom:.9in;left:0;right:0;text-align:center;font-size:9pt;color:var(--muted);letter-spacing:.08em}
+
+  h2{font-family:var(--serif);font-weight:600;font-size:30pt;line-height:1.1;margin:0 0 4px}
+  .eyebrow{font-size:8.5pt;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--sky-deep);margin-bottom:10px}
+  .rule{height:1px;background:var(--line);margin:14px 0 20px}
+  h3{font-family:var(--sans);font-size:11pt;font-weight:700;margin:18px 0 5px;letter-spacing:.01em}
+  p{margin:0 0 10px;max-width:62ch}
+  ul{margin:0 0 10px 18px}
+  li{margin-bottom:5px}
+  .lede{font-size:12.5pt;color:var(--muted);max-width:52ch;margin-bottom:6px}
+  .pill{display:inline-block;background:var(--sky-tint);color:var(--ink);border-radius:999px;
+        padding:4px 12px;font-size:9.5pt;font-weight:600;margin:0 6px 7px 0}
+  blockquote{font-family:var(--serif);font-style:italic;font-weight:500;font-size:16pt;line-height:1.4;
+    color:var(--ink);border-left:3px solid var(--sky);padding-left:16px;margin:14px 0}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+  .card h4{font-size:10pt;font-weight:700;margin-bottom:6px;letter-spacing:.02em}
+  .card p,.card li{font-size:10pt}
+  .sw{display:flex;align-items:center;gap:12px;margin-bottom:11px}
+  .chip{width:52px;height:52px;border-radius:10px;border:1px solid rgba(36,48,73,.12);flex:0 0 auto}
+  .sw .meta b{display:block;font-size:10.5pt}
+  .sw .meta span{font-size:9pt;color:var(--muted);font-variant-numeric:tabular-nums}
+  .sw .meta em{display:block;font-size:9pt;color:var(--muted);font-style:normal;margin-top:2px}
+  .pageno{position:absolute;bottom:.5in;right:.95in;font-size:8.5pt;color:var(--muted)}
+  .tag{position:absolute;bottom:.5in;left:.95in;font-size:8.5pt;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+  .do{border-left:3px solid #4E8FBD}
+  .dont{border-left:3px solid var(--cardinal)}
+  table{border-collapse:collapse;width:100%;font-size:10pt;margin:8px 0}
+  th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-size:8.5pt;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:700}
+  .mark-demo{display:flex;align-items:center;gap:18px;margin:10px 0 4px}
+  .serif-demo{font-family:var(--serif);font-size:26pt;font-weight:600}
+  .note{background:#fff;border:1px solid var(--line);border-left:3px solid var(--amber);
+        border-radius:0 10px 10px 0;padding:13px 16px;margin:12px 0;font-size:10pt}
+  .note b{color:var(--amber)}
+</style></head><body>
+
+<!-- COVER -->
+<section class="page cover">
+  <svg class="balloon" viewBox="0 0 40 58" width="58" height="84">
+    <path d="M20 2 C31 2 38 10 38 20 C38 29.5 28.5 35.5 24.5 42 L15.5 42 C11.5 35.5 2 29.5 2 20 C2 10 9 2 20 2 Z" fill="#B04A3E"/>
+    <path d="M20 2 C25.5 2 29 10 29 20 C29 29 24.5 35.5 22.5 42 L17.5 42 C15.5 35.5 11 29 11 20 C11 10 14.5 2 20 2 Z" fill="#C05B4F"/>
+    <path d="M20 2 C22 2 23.5 10 23.5 20 C23.5 29.5 21.5 36 20.8 42 L19.2 42 C18.5 36 16.5 29.5 16.5 20 C16.5 10 18 2 20 2 Z" fill="#CF6F60"/>
+    <path d="M15.5 42 L15 49 M24.5 42 L25 49" stroke="#63708A" stroke-width=".9" fill="none"/>
+    <rect x="15" y="49" width="10" height="7" rx="2" fill="#8A5F38"/>
+  </svg>
+  <svg viewBox="0 0 64 64" width="92" height="92">
+    <defs>
+      <radialGradient id="s" cx="50%" cy="32%" r="80%"><stop offset="0%" stop-color="#9BCBE7"/><stop offset="100%" stop-color="#4E8FBD"/></radialGradient>
+      <linearGradient id="c" gradientUnits="userSpaceOnUse" x1="32" y1="10" x2="32" y2="53"><stop offset="0%" stop-color="#fff"/><stop offset="58%" stop-color="#FCFBF8"/><stop offset="100%" stop-color="#DCE7F1"/></linearGradient>
+    </defs>
+    <circle cx="32" cy="32" r="32" fill="url(#s)"/>
+    <g fill="url(#c)">
+      <path d="M32,52C20.5,43.5,11,35.5,11,26.5C11,19.5,16.5,14.5,23,14.5C27.5,14.5,30.8,17.2,32,20C33.2,17.2,36.5,14.5,41,14.5C47.5,14.5,53,19.5,53,26.5C53,35.5,43.5,43.5,32,52Z"/>
+      <circle cx="21.5" cy="21" r="8.6"/><circle cx="42.5" cy="21" r="8.6"/>
+      <circle cx="13.8" cy="28.5" r="6"/><circle cx="50.2" cy="28.5" r="6"/>
+      <circle cx="24" cy="33" r="7.4"/><circle cx="40" cy="33" r="7.4"/>
+    </g>
+  </svg>
+  <div class="kick" style="margin-top:26px">Brand Guide</div>
+  <h1>One More Day</h1>
+  <p class="sub">A novel by Chris Post — and the daily gathering of more than 219,000 people it grew from.</p>
+  <div class="foot">Version 1.0 · August 2026 · onemoredaybook.com</div>
+</section>
+
+<!-- 1. THE BRAND -->
+<section class="page">
+  <div class="eyebrow">01 — The Brand</div>
+  <h2>What One More Day is</h2>
+  <div class="rule"></div>
+  <p class="lede">One More Day is a debut novel about life, love, loss — and finding yourself again when you never thought you could.</p>
+  <p><b>Business name:</b> One More Day<br>
+     <b>Industry:</b> Books &amp; publishing — fiction (grief, love, hope)<br>
+     <b>Author:</b> Chris Post<br>
+     <b>Website:</b> onemoredaybook.com<br>
+     <b>Facebook:</b> facebook.com/onemoredaypost — 219,000 followers</p>
+
+  <h3>Tagline</h3>
+  <blockquote>Cherish each moment. Never give up on hope.</blockquote>
+
+  <h3>Description</h3>
+  <p>One More Day began as a place to put words to the things we all feel and rarely say. What started as a single page about love, loss, and healing has grown into a daily gathering of more than 219,000 people. The book carries that same heart — written by the same hands, for the same reasons.</p>
+
+  <h3>The one-sentence promise</h3>
+  <p>Whatever you are carrying, you are not carrying it alone.</p>
+
+  <div class="note"><b>Why this brand works.</b> The audience did not arrive for an author or a product. They arrived because someone said the thing they could not say themselves. Every piece of content should earn its place the same way — comfort first, book second.</div>
+
+  <div class="tag">One More Day · Brand Guide</div><div class="pageno">1</div>
+</section>
+
+<!-- 2. AUDIENCE -->
+<section class="page">
+  <div class="eyebrow">02 — Audience</div>
+  <h2>Who we are speaking to</h2>
+  <div class="rule"></div>
+  <p class="lede">People who have loved and lost — and who read at night, on their phone, when the house is quiet.</p>
+
+  <p><b>Audience:</b> Adults, skewing 35–70 and predominantly women, who have experienced the death of a spouse, parent, child, or close friend. They follow grief and hope pages daily, share quote cards with their own friends, and read fiction that helps them feel understood rather than fixed. Many are years into their loss and still find that no one talks about it with them.</p>
+
+  <h3>What they want</h3>
+  <ul>
+    <li>To feel seen — words that name a feeling they have not been able to name.</li>
+    <li>Permission — to still be grieving, at their own pace, without apology.</li>
+    <li>Hope that is honest, never forced or cheerful.</li>
+    <li>Something to share, so their own people understand them a little better.</li>
+  </ul>
+
+  <h3>What they do not want</h3>
+  <ul>
+    <li>Being sold to in a moment of vulnerability.</li>
+    <li>Advice, stages of grief, or timelines.</li>
+    <li>Slogans that skip past the hard part to the silver lining.</li>
+  </ul>
+
+  <div class="grid2" style="margin-top:16px">
+    <div class="card"><h4>They engage most with</h4>
+      <ul><li>Short quote cards, plainly set</li><li>Reels with a quiet, spoken line</li><li>Anything naming a specific, small moment of loss</li></ul></div>
+    <div class="card"><h4>They disengage from</h4>
+      <ul><li>Repeated promotion of the same link</li><li>Stock-photo positivity</li><li>Anything that sounds like a brand talking</li></ul></div>
+  </div>
+
+  <div class="tag">One More Day · Brand Guide</div><div class="pageno">2</div>
+</section>
+
+<!-- 3. VOICE -->
+<section class="page">
+  <div class="eyebrow">03 — Voice &amp; Tone</div>
+  <h2>How One More Day sounds</h2>
+  <div class="rule"></div>
+  <p class="lede">Voice summary: Tender, plainspoken, and unhurried. One More Day speaks the way a trusted friend speaks late at night — honest about grief, never heavy for its own sake, and always ending somewhere a person can stand.</p>
+
+  <h3>Voice adjectives</h3>
+  <div>
+    <span class="pill">Tender</span><span class="pill">Honest</span><span class="pill">Unhurried</span>
+    <span class="pill">Warm</span><span class="pill">Plainspoken</span><span class="pill">Hopeful</span>
+    <span class="pill">Quietly confident</span><span class="pill">Never saccharine</span>
+  </div>
+
+  <h3>Sentences that sound right</h3>
+  <blockquote>Whenever grief tries to steal the beauty of your memories, just remember: Love. Never. Dies.</blockquote>
+  <blockquote>Letting go of something precious may be as simple as saying: &lsquo;Thank you for the journey.&rsquo;</blockquote>
+
+  <div class="grid2" style="margin-top:6px">
+    <div class="card do"><h4>Do</h4>
+      <ul>
+        <li>Write short. One thought per post.</li>
+        <li>Name the specific moment — the empty chair, the unsent text.</li>
+        <li>Let a post simply comfort, with nothing to click.</li>
+        <li>Speak to one person, not an audience.</li>
+        <li>End on hope that has been earned.</li>
+        <li>Use plain words a grieving person can absorb at 11pm.</li>
+      </ul></div>
+    <div class="card dont"><h4>Don&rsquo;t</h4>
+      <ul>
+        <li>Don&rsquo;t give advice or name stages of grief.</li>
+        <li>Don&rsquo;t tell anyone how long healing should take.</li>
+        <li>Don&rsquo;t use marketing language: unlock, must-read, don&rsquo;t miss.</li>
+        <li>Don&rsquo;t stack hashtags or use trending-topic hooks.</li>
+        <li>Don&rsquo;t sell in the same breath as a grief post.</li>
+        <li>Don&rsquo;t use exclamation marks or emoji in the voice of the brand.</li>
+      </ul></div>
+  </div>
+
+  <div class="tag">One More Day · Brand Guide</div><div class="pageno">3</div>
+</section>
+
+<!-- 4. KEY MESSAGES -->
+<section class="page">
+  <div class="eyebrow">04 — Key Messages</div>
+  <h2>What we say, again and again</h2>
+  <div class="rule"></div>
+  <p class="lede">These are the load-bearing ideas. Everything published should trace back to one of them.</p>
+
+  <table>
+    <tr><th>Message</th><th>Where it shows up</th></tr>
+    <tr><td><b>Love never dies.</b> A person you lost is still part of who you are.</td><td>Quote cards, reels, the book&rsquo;s heart</td></tr>
+    <tr><td><b>Grief has no timeline.</b> You are allowed to still be grieving.</td><td>Quote cards, comments, community replies</td></tr>
+    <tr><td><b>Cherish each moment.</b> The ordinary day is the one you will miss.</td><td>Tagline, book description, hero copy</td></tr>
+    <tr><td><b>You can find yourself again.</b> Not the same person — a new one, still standing.</td><td>Book positioning, author story</td></tr>
+    <tr><td><b>You are not alone.</b> 219,000 people are quietly carrying this too.</td><td>Community posts, signup invitations</td></tr>
+    <tr><td><b>Written from the heart.</b> This story was carried for years before it was written.</td><td>Author section, launch messaging</td></tr>
+  </table>
+
+  <h3>The book, described three ways</h3>
+  <p><b>Short (one line):</b> A story about life, love, and loss — and finding yourself again when you never thought you could.</p>
+  <p><b>Medium (social bio):</b> One More Day is the debut novel by Chris Post — a story about love, loss, and the long way back to yourself. From the page followed by more than 219,000 people.</p>
+  <p><b>Long (about page):</b> For years, Chris Post carried a story in his heart. One More Day is that story: about life, love, loss, and finding yourself again when you never thought you could. Every page was written from the heart, with the hope that it reminds you to cherish each moment — and never give up on hope.</p>
+
+  <div class="tag">One More Day · Brand Guide</div><div class="pageno">4</div>
+</section>
+
+<!-- 5. COLOUR -->
+<section class="page">
+  <div class="eyebrow">05 — Colour</div>
+  <h2>The palette</h2>
+  <div class="rule"></div>
+  <p class="lede">A dawn sky over water: the moment the light comes back. Cool blues carry the calm; warm amber carries the hope.</p>
+
+  <div class="grid2">
+    <div>
+      <div class="sw"><div class="chip" style="background:#4E8FBD"></div><div class="meta"><b>Cloud Sky</b><span>#4E8FBD · RGB 78 143 189</span><em>Primary. The mark, accents, links.</em></div></div>
+      <div class="sw"><div class="chip" style="background:#243049"></div><div class="meta"><b>Dusk Ink</b><span>#243049 · RGB 36 48 73</span><em>All body text and headlines.</em></div></div>
+      <div class="sw"><div class="chip" style="background:#C4832F"></div><div class="meta"><b>Sunset Amber</b><span>#C4832F · RGB 196 131 47</span><em>Warmth, and the one button that asks.</em></div></div>
+    </div>
+    <div>
+      <div class="sw"><div class="chip" style="background:#FBF8F2"></div><div class="meta"><b>Dawn Paper</b><span>#FBF8F2 · RGB 251 248 242</span><em>Background. Never pure white.</em></div></div>
+      <div class="sw"><div class="chip" style="background:#DCEAF4"></div><div class="meta"><b>Soft Sky</b><span>#DCEAF4 · RGB 220 234 244</span><em>Quiet panels and card tints.</em></div></div>
+      <div class="sw"><div class="chip" style="background:#B04A3E"></div><div class="meta"><b>Cardinal</b><span>#B04A3E · RGB 176 74 62</span><em>Reserved. See the rule below.</em></div></div>
+    </div>
+  </div>
+
+  <div class="note"><b>The Cardinal rule.</b> Cardinal red appears exactly once in any given piece — the balloon in the sky, or the single button that asks someone to buy the book. Never as a background, never for emphasis, never twice. Its power is that it is rare.</div>
+
+  <h3>Using colour</h3>
+  <ul>
+    <li>Text is always Dusk Ink on Dawn Paper — never grey on white.</li>
+    <li>Backgrounds may be a soft dawn gradient (sky blue at top, warm cream at the bottom).</li>
+    <li>No pure black (#000) and no pure white (#FFF) anywhere in the brand.</li>
+    <li>Never place text over a busy photograph; give words their own quiet ground.</li>
+  </ul>
+
+  <div class="tag">One More Day · Brand Guide</div><div class="pageno">5</div>
+</section>
+
+<!-- 6. TYPE -->
+<section class="page">
+  <div class="eyebrow">06 — Typography</div>
+  <h2>The type system</h2>
+  <div class="rule"></div>
+
+  <h3>Heading font — Cormorant Garamond</h3>
+  <div class="serif-demo">One More Day</div>
+  <div class="serif-demo" style="font-style:italic;font-size:18pt">Love. Never. Dies.</div>
+  <p>A literary serif with real warmth. Used for the title, all headings, and every quotation. Quotations are always set in the italic. Weight 600. Never use it for long paragraphs or small print.</p>
+
+  <h3>Body font — Source Sans 3</h3>
+  <p style="font-size:12pt">Clear, warm, and easy to read at any size — including on a phone at night, which is when most of this audience reads. Weight 400 for text, 600 for buttons and labels.</p>
+
+  <table>
+    <tr><th>Use</th><th>Font</th><th>Notes</th></tr>
+    <tr><td>Book title / headlines</td><td>Cormorant Garamond 600</td><td>Tight letter-spacing, generous line height</td></tr>
+    <tr><td>Quotations</td><td>Cormorant Garamond 600 italic</td><td>The signature look of the brand</td></tr>
+    <tr><td>Body copy</td><td>Source Sans 3 400</td><td>Around 65 characters per line</td></tr>
+    <tr><td>Buttons &amp; labels</td><td>Source Sans 3 600</td><td>Sentence case, never all-caps shouting</td></tr>
+    <tr><td>Small eyebrow labels</td><td>Source Sans 3 600</td><td>Uppercase, wide letter-spacing, sparingly</td></tr>
+  </table>
+
+  <div class="note"><b>If these fonts are unavailable</b> in a given tool, substitute Georgia for the serif and Lato or Segoe UI for the sans. Never substitute a slab serif, a condensed face, or a handwriting script.</div>
+
+  <div class="tag">One More Day · Brand Guide</div><div class="pageno">6</div>
+</section>
+
+<!-- 7. MARKS -->
+<section class="page">
+  <div class="eyebrow">07 — The Marks</div>
+  <h2>Heart-cloud and balloon</h2>
+  <div class="rule"></div>
+
+  <h3>The heart-cloud — primary mark</h3>
+  <div class="mark-demo">
+    <svg viewBox="0 0 64 64" width="76" height="76">
+      <circle cx="32" cy="32" r="32" fill="url(#s)"/>
+      <g fill="url(#c)">
+        <path d="M32,52C20.5,43.5,11,35.5,11,26.5C11,19.5,16.5,14.5,23,14.5C27.5,14.5,30.8,17.2,32,20C33.2,17.2,36.5,14.5,41,14.5C47.5,14.5,53,19.5,53,26.5C53,35.5,43.5,43.5,32,52Z"/>
+        <circle cx="21.5" cy="21" r="8.6"/><circle cx="42.5" cy="21" r="8.6"/>
+        <circle cx="13.8" cy="28.5" r="6"/><circle cx="50.2" cy="28.5" r="6"/>
+        <circle cx="24" cy="33" r="7.4"/><circle cx="40" cy="33" r="7.4"/>
+      </g>
+    </svg>
+    <div style="font-size:10pt;color:var(--muted);max-width:34ch">A soft white cloud shaped like a heart, on a circle of sky. It is the profile picture the audience already recognises. Keep it soft-edged and rounded — never a hard geometric heart icon.</div>
+  </div>
+  <ul>
+    <li>Minimum size 32px. Always keep clear space of at least half its width on every side.</li>
+    <li>Do not recolour it, add a drop shadow beyond the soft one built in, rotate it, or place it on a busy photo.</li>
+    <li>On dark backgrounds, keep the sky circle — do not knock the mark out to white.</li>
+  </ul>
+
+  <h3>The balloon — secondary motif</h3>
+  <div class="mark-demo">
+    <svg viewBox="0 0 40 58" width="44" height="64">
+      <path d="M20 2 C31 2 38 10 38 20 C38 29.5 28.5 35.5 24.5 42 L15.5 42 C11.5 35.5 2 29.5 2 20 C2 10 9 2 20 2 Z" fill="#B04A3E"/>
+      <path d="M20 2 C25.5 2 29 10 29 20 C29 29 24.5 35.5 22.5 42 L17.5 42 C15.5 35.5 11 29 11 20 C11 10 14.5 2 20 2 Z" fill="#C05B4F"/>
+      <path d="M20 2 C22 2 23.5 10 23.5 20 C23.5 29.5 21.5 36 20.8 42 L19.2 42 C18.5 36 16.5 29.5 16.5 20 C16.5 10 18 2 20 2 Z" fill="#CF6F60"/>
+      <path d="M15.5 42 L15 49 M24.5 42 L25 49" stroke="#63708A" stroke-width=".9" fill="none"/>
+      <rect x="15" y="49" width="10" height="7" rx="2" fill="#8A5F38"/>
+    </svg>
+    <div style="font-size:10pt;color:var(--muted);max-width:36ch">A small cardinal-red hot-air balloon, high in the sky. It appears once, small, and unexplained — a quiet signature rather than a logo.</div>
+  </div>
+  <div class="note"><b>Handle with care.</b> The balloon carries a personal meaning for the author. It is never a decoration, never repeated across a layout, never animated for attention, and never used in a promotional or jokey context. When in doubt, leave it out — and ask Chris.</div>
+
+  <div class="tag">One More Day · Brand Guide</div><div class="pageno">7</div>
+</section>
+
+<!-- 8. IMAGERY -->
+<section class="page">
+  <div class="eyebrow">08 — Imagery</div>
+  <h2>What the pictures look like</h2>
+  <div class="rule"></div>
+  <p class="lede">Skies, water, and light at the edges of the day. Space to breathe. Almost never a face.</p>
+
+  <div class="grid2">
+    <div class="card do"><h4>Yes</h4>
+      <ul>
+        <li>Dawn and dusk skies; clouds with light behind them</li>
+        <li>Shorelines, still water, open horizons</li>
+        <li>Silhouettes — hands, birds, a lone figure, seen small</li>
+        <li>Single objects with meaning: a chair, a rose, a letter</li>
+        <li>Soft focus, generous empty space, muted natural colour</li>
+      </ul></div>
+    <div class="card dont"><h4>No</h4>
+      <ul>
+        <li>Stock-photo smiling models or business imagery</li>
+        <li>Cemeteries, coffins, hospital beds, anything clinical</li>
+        <li>Heavy filters, high saturation, hard contrast</li>
+        <li>Cluttered collages or more than one focal point</li>
+        <li>Text crowded to the edges of the frame</li>
+      </ul></div>
+  </div>
+
+  <h3>Quote cards — the workhorse format</h3>
+  <ul>
+    <li>One thought per card. If it needs two sentences, it needs two cards.</li>
+    <li>Set the quote in the serif italic, centred, with wide margins.</li>
+    <li>Background: a soft dawn gradient or a quiet photograph at low contrast.</li>
+    <li>No logo lockup on every card — the voice is the signature. The mark appears occasionally, small.</li>
+    <li>Square (1:1) for feed, vertical (4:5 or 9:16) for stories and reels.</li>
+  </ul>
+
+  <div class="tag">One More Day · Brand Guide</div><div class="pageno">8</div>
+</section>
+
+<!-- 9. SOCIAL -->
+<section class="page">
+  <div class="eyebrow">09 — Social</div>
+  <h2>How we show up daily</h2>
+  <div class="rule"></div>
+  <p class="lede">The page posts every day and always has. The book does not change that rhythm — it lives inside it.</p>
+
+  <h3>Content mix — the 5:1 rule</h3>
+  <p>For every one post that asks for something (join the list, get the book), publish at least five that ask for nothing. This ratio is the reason the audience trusts the page, and it is not negotiable.</p>
+
+  <table>
+    <tr><th>Pillar</th><th>Share</th><th>What it is</th></tr>
+    <tr><td><b>Comfort</b></td><td>~40%</td><td>Quote cards naming a feeling. The core of the page.</td></tr>
+    <tr><td><b>Permission</b></td><td>~20%</td><td>Grief has no timeline; you are allowed to still be sad.</td></tr>
+    <tr><td><b>Hope</b></td><td>~20%</td><td>Light at the edge — earned, never forced.</td></tr>
+    <tr><td><b>The story</b></td><td>~10%</td><td>Glimpses of the book and the writing of it.</td></tr>
+    <tr><td><b>The ask</b></td><td>~10%</td><td>Join the list, and later: get your copy.</td></tr>
+  </table>
+
+  <h3>Rules of the room</h3>
+  <ul>
+    <li>Never post an ask on the same day as a post about a specific loss.</li>
+    <li>Replies matter more than posts. When someone shares their grief in a comment, answer them as a person — briefly, warmly, with no link.</li>
+    <li>Reels: one line, spoken plainly, over a quiet sky. No music that swells.</li>
+    <li>Never boost or run ads on a grief post. Ask-posts only.</li>
+  </ul>
+
+  <h3>Hashtags</h3>
+  <p>Used sparingly — three to five, at the end, never mid-sentence.</p>
+  <div>
+    <span class="pill">#OneMoreDay</span><span class="pill">#GriefJourney</span><span class="pill">#LoveNeverDies</span>
+    <span class="pill">#Hope</span><span class="pill">#Healing</span><span class="pill">#AuthorJourney</span><span class="pill">#DebutNovel</span>
+  </div>
+
+  <div class="tag">One More Day · Brand Guide</div><div class="pageno">9</div>
+</section>
+
+<!-- 10. QUICK REFERENCE -->
+<section class="page">
+  <div class="eyebrow">10 — Quick Reference</div>
+  <h2>The one-page version</h2>
+  <div class="rule"></div>
+
+  <table>
+    <tr><th>Field</th><th>Value</th></tr>
+    <tr><td>Business name</td><td>One More Day</td></tr>
+    <tr><td>Industry</td><td>Books &amp; publishing — fiction (grief, love, hope)</td></tr>
+    <tr><td>Tagline</td><td>Cherish each moment. Never give up on hope.</td></tr>
+    <tr><td>Heading font</td><td>Cormorant Garamond</td></tr>
+    <tr><td>Body font</td><td>Source Sans 3</td></tr>
+    <tr><td>Primary colour</td><td>Cloud Sky #4E8FBD</td></tr>
+    <tr><td>Text colour</td><td>Dusk Ink #243049</td></tr>
+    <tr><td>Accent colour</td><td>Sunset Amber #C4832F</td></tr>
+    <tr><td>Background</td><td>Dawn Paper #FBF8F2</td></tr>
+    <tr><td>Reserved colour</td><td>Cardinal #B04A3E — once per piece, never more</td></tr>
+    <tr><td>Voice</td><td>Tender, honest, unhurried, warm, plainspoken, hopeful</td></tr>
+    <tr><td>Audience</td><td>Adults 35–70, mostly women, who have lost someone they love</td></tr>
+    <tr><td>Website</td><td>onemoredaybook.com</td></tr>
+    <tr><td>Facebook</td><td>facebook.com/onemoredaypost</td></tr>
+  </table>
+
+  <blockquote style="margin-top:26px">Whatever you are carrying, you are not carrying it alone.</blockquote>
+
+  <div class="tag">One More Day · Brand Guide</div><div class="pageno">10</div>
+</section>
+
+</body></html>
