@@ -13,7 +13,7 @@
 window.OMD_CONFIG = {
   PHASE: 1,
 
-  SHOW_AUTHOR_NAME: false,
+  SHOW_AUTHOR_NAME: true,
 
   /* Paste a link to the free first chapter (a PDF or a page) to switch the
      site into lead-magnet mode: the buttons become "Read the first chapter
