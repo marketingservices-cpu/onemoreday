@@ -142,6 +142,73 @@ input:focus-visible {
 
 .hero__inner { position: relative; }
 
+/* THE COVER.
+   Sits BESIDE the words on a wide screen rather than above them, because the
+   hero's job is to get the email address and pushing the form below the fold
+   to make room for a picture would trade the conversion for the decoration.
+   Under 62em it stacks, deliberately small, for the same reason — most of the
+   traffic from a Facebook announcement arrives on a phone. */
+.hero__cover {
+  display: block;
+  width: clamp(112px, 30vw, 150px);
+  height: auto;
+  margin: 0 auto 1.25rem;
+  border-radius: 6px;
+  /* A book has edges. Two shadows: a close one for the page, a soft wide one
+     so it sits in the dawn light rather than on top of it. */
+  box-shadow:
+    0 1px 2px rgba(36, 48, 73, 0.28),
+    0 18px 44px rgba(36, 48, 73, 0.22);
+}
+
+/* Below the two-column breakpoint the cover and the heart-cloud mark are two
+   pieces of the same identity stacked on top of each other, and the pair pushed
+   the submit button off a 375x667 screen — measured at 718px against a 667px
+   viewport. The cover carries the title and the heart, so it stands in for the
+   mark and the CTA stays where it can be tapped. */
+@media (max-width: 61.999em) {
+  .hero__cover ~ .hero__words .hero__mark { display: none; }
+}
+
+@media (min-width: 62em) {
+  .hero__inner {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    gap: clamp(2.5rem, 5vw, 4.5rem);
+    text-align: left;
+    max-width: 62rem;
+  }
+  .hero__cover {
+    width: clamp(200px, 22vw, 280px);
+    margin: 0;
+  }
+  /* These centre themselves with `margin: 0 auto` in the single-column layout,
+     and those rules appear LATER in this file — so the override has to out-
+     specify them, not merely follow them into a media query. Beside the cover
+     they line up with the text they belong to. */
+  .hero__words .hero__mark,
+  .hero__words .hero__sub,
+  .hero__words .hero__note,
+  .hero__words .hero__cta { margin-inline: 0; }
+  .hero__words .hero__note,
+  .hero__words .hero__cta { text-align: left; }
+  /* The form centres itself too — same story, same fix. */
+  .hero__words .signup,
+  .hero__words .signup__row { margin-inline: 0; }
+  /* The sub and the note read better measured than full-width. */
+  .hero__words .hero__sub { max-width: 34ch; }
+  .hero__words .hero__note { max-width: 46ch; }
+}
+
+/* The balloon lives in the top-right of the sky. At the width where the hero
+   becomes two columns the cover reaches up into that corner, so the balloon
+   steps aside rather than landing on the artwork. */
+@media (min-width: 62em) {
+  .hero__balloon { right: clamp(1rem, 4vw, 3rem); }
+}
+
+
 /* The balloon — small, high, unhurried. The one touch of cardinal
    in the sky; the story behind it belongs to the author. */
 .hero__balloon {
