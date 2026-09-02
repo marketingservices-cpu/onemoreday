@@ -1,0 +1,14 @@
+# The book site's Supabase project (ref czphffqwwvfpggxzeghy).
+#
+# ⚠️ ALWAYS DEPLOY WITH AN EXPLICIT --project-ref. This repo sits next to
+# card-to-close, whose functions live in a DIFFERENT project; a deploy that
+# guesses would push the wrong code to the wrong place.
+#
+# ⚠️ verify_jwt PINNED ON PURPOSE. A CLI deploy resets it to true unless it is
+# stated here, and a silent flip to true turns every signup into a 401 that
+# only shows up as an empty list.
+project_id = "czphffqwwvfpggxzeghy"
+
+[functions.omd-signup]
+# The site posts the project's public anon key, so the platform check stays on.
+verify_jwt = true
