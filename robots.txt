@@ -1,0 +1,6 @@
+# One More Day — chrispost.
+# Everything here is meant to be found. Nothing is disallowed.
+User-agent: *
+Allow: /
+
+Sitemap: https://onemoredaybook.com/sitemap.xml
